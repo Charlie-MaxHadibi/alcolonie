@@ -24,12 +24,9 @@
             <input type="number" name="seed" placeholder="Code partie" required="requis">
             <input type="submit" value="Rejoindre"">
         </form>
-
-
         <form action="insert.php" method="POST">
             <h2>Ajoute une photo ! EN COURS DE DEVELOPPEMENT</h2>
             <?php
-
                 //connexion a la bdd
                 $servername = "localhost";
                 $db_username = "root";
