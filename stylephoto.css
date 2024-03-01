@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: FF7AFB;
+  } 
+.photo-frame {
+    width: 800px;
+    margin: 50px auto;
+}
+div.a {
+    text-align:center;
+}
+.row {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.row2{
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    margin: 5px;
+}
+.img {
+    width: 200px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+}
+div.a{
+    text-align: center;
+}
+.photo-pin {
+    text-align: center;
+    border: 1px solid;
+    margin: 5px;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.footer-left img {
+    width: 140px;
+}
+
+.footer-right {
+    text-align: right;
+    margin-right: 20px;
+}
+form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin: 20px;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+header {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+h1 {
+    margin: 0;
+}
