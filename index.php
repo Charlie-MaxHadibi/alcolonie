@@ -33,7 +33,7 @@
                 //connexion a la bdd
                 $servername = "localhost";
                 $db_username = "root";
-                $db_password = "";
+                $db_password = "1015";
                 $dbname = "test";
                 $conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
