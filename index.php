@@ -49,7 +49,7 @@
             ?>
             <input type="file" id="file" name="file" accept=".jpg,.png,.jpeg">
             <input type="hidden" name="MAX_FILE_SIZE" value=".....">
-            <input type="submit" value="Rejoindre"">
+            <input type="submit" value="Rejoindre">
         </form>
     <?php include('footer.php'); ?>
     <script src="script.js"></script>
