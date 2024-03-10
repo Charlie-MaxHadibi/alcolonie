@@ -21,14 +21,22 @@
         //recuperation et verification de la seed
         if (isset($_POST['seed'])){
             $seed = $_POST['seed'];
+            
+            // Affichage de la partie en fonction de la seed
+        
             //recuperation des nom/nomphoto
             $sql = "SELECT nom, nomphoto FROM partie WHERE idgame='".$seed."'";
             $result = $conn->query($sql);
             //affichage des photo
+            $i=0;
             echo '<div class="photo-frame"><div class="row">';
-            foreach($result as $row){
-                
-                echo '<div class="photo-pin">'.$row['nom'].'<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';                
+            foreach($result as $row){       
+                echo '<div class="photo-pin">'.$row['nom'].'<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';
+                $i = $i+1;  
+                if ($i >= 8){
+                    echo '</div><div class="row">';
+                    $i=0;
+                }              
             }
             echo '</div></div>';
 
@@ -42,26 +50,36 @@
         }
         include('footer.php');
     ?>
+
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var photos = document.querySelectorAll('.photo');
+        document.addEventListener('DOMContentLoaded', function() {
+            var photos = document.querySelectorAll('.photo');
 
-        photos.forEach(function(photo) {
-            photo.addEventListener('click', function() {
-                if (photo.getAttribute('src') !== 'replacement.jpg') {
-                    // Si la photo n'est pas déjà remplacée, la remplacer par "replacement.jpg"
-                    photo.setAttribute('src', 'replacement.jpg');
-                } else {
-                    // Sinon, la remplacer par son image d'origine
-                    var originalSrc = photo.getAttribute('data-original-src');
-                    photo.setAttribute('src', originalSrc);
-                }
+            photos.forEach(function(photo) {
+                photo.addEventListener('click', function() {
+                    if (photo.getAttribute('src') !== 'replacement.jpg') {
+                        // Si la photo n'est pas déjà remplacée, la remplacer par "replacement.jpg"
+                        photo.setAttribute('src', 'replacement.jpg');
+                    } else {
+                        // Sinon, la remplacer par son image d'origine
+                        var originalSrc = photo.getAttribute('data-original-src');
+                        photo.setAttribute('src', originalSrc);
+                    }
+                });
+
+                // Stocker l'URL d'origine de la photo dans un attribut de données personnalisé
+                photo.setAttribute('data-original-src', photo.getAttribute('src'));
             });
-            // Stocker l'URL d'origine de la photo dans un attribut de données personnalisé
-            photo.setAttribute('data-original-src', photo.getAttribute('src'));
         });
-    });
-    </script>
+        </script>
+        <script>
+            // Sélection aléatoire d'une division avec la classe "photo-pin"
+            var photoPins = document.getElementsByClassName("photo-pin");
+            var randomIndex = Math.floor(Math.random() * photoPins.length);
+            var randomPhotoPin = photoPins[randomIndex];
 
+            // Application de la bordure rose
+            randomPhotoPin.style.border = "5px solid pink";
+        </script>
 </body>
 </html>
