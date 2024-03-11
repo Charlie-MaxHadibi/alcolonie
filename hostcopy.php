@@ -47,17 +47,13 @@
         shuffle($tablenom);
 
         // Sélectionner les 8 premières valeurs
-        $valeurs_aleatoires = array_slice($tablenom, 0, 8);
+        $valeurs_aleatoires = array_slice($tablenom, 0, 16);
 
-        // Afficher les valeurs sélectionnées
-        echo '<div class="photo-frame"><div class="row">';
-        $i=1;
+        // Creer la partie avec la seed
         foreach ($valeurs_aleatoires as $valeur) {
-            echo '<div class="photo-pin">'.$valeur;
             $sql = "SELECT nomphoto FROM personne WHERE prenom ='".$valeur."' ORDER BY RAND() LIMIT 1";
             $result = $conn->query($sql);
             foreach($result as $row){
-                echo '<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';
                 //recuperation nom + idgame + nomphoto pour envoie sur bdd
                 $send="INSERT INTO partie (idgame, nom, nomphoto) VALUES ('".$seed."', '".$valeur."', '".$row['nomphoto']."')";
                 $conn->query($send); 
@@ -65,7 +61,25 @@
             
 
         }
-        echo "</div></div>";
+
+        // Affichage de la partie en fonction de la seed
+        
+        //recuperation des nom/nomphoto
+        $sql = "SELECT nom, nomphoto FROM partie WHERE idgame='".$seed."'";
+        $result = $conn->query($sql);
+        //affichage des photo
+        $i=0;
+        echo '<div class="photo-frame"><div class="row">';
+        foreach($result as $row){       
+            echo '<div class="photo-pin">'.$row['nom'].'<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';
+            $i = $i+1;  
+            if ($i >= 8){
+                echo '</div><div class="row">';
+                $i=0;
+            }              
+        }
+        echo '</div></div>';
+
     
         include('footer.php');
 
