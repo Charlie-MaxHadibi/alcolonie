@@ -24,7 +24,8 @@
             <input type="number" name="seed" placeholder="Code partie" required="requis">
             <input type="submit" value="Rejoindre"">
         </form>
-        <form action="insert.php" method="POST">
+
+        <form action="insert.php" method="POST" enctype="multipart/form-data">
             <h2>Ajoute une photo ! EN COURS DE DEVELOPPEMENT</h2>
             <?php
                 //connexion a la bdd
