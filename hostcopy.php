@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QUI EST-CE ? L'ALCOLONIE</title>
-<link rel="stylesheet" href="stylephoto.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--Import stylce.css -->
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
     <?php
@@ -62,27 +69,51 @@
 
         }
 
-        // Affichage de la partie en fonction de la seed
+        //              ----    Affichage de la partie en fonction de la seed    ----
         
-        //recuperation des nom/nomphoto
+        // recuperation des nom/nomphoto
         $sql = "SELECT nom, nomphoto FROM partie WHERE idgame='".$seed."'";
         $result = $conn->query($sql);
-        //affichage des photo
         $i=0;
-        echo '<div class="photo-frame"><div class="row">';
+        // sauvegarde des nom / nom des photo dans tableau nom et nomphoto
         foreach($result as $row){       
-            echo '<div class="photo-pin">'.$row['nom'].'<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';
-            $i = $i+1;  
-            if ($i >= 8){
-                echo '</div><div class="row">';
-                $i=0;
-            }              
+            $i = $i+1; 
+            $nom[$i] = $row['nom'];
+            $nomphoto[$i] = $row['nomphoto'];
+
+                         
         }
-        echo '</div></div>';
+        // affichage
+        echo '  <div class="row flex">';
+        echo '<div class="col s2 m2"></div>';
 
-    
-        include('footer.php');
+        for($a=1;$a<=8;$a++){
+            echo'   <div class="col s1 m1">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="photo/'.$nomphoto[$a].'.jpg" class="sc">
+                            </div>
+                            '.$nom[$a].'
+                        </div>
+                    </div>';
+        }
+        echo '<div class="col s2 m2"></div>';
 
+        echo '  </div>';
+        echo '  <div class="row flex">';
+        echo '<div class="col s2 m2"></div>';
+        for($a=9;$a<=16;$a++){
+            echo'<div class="col s1 m1 ">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="photo/'.$nomphoto[$a].'.jpg" class="sc">
+                        </div>
+                        '.$nom[$a].'
+                    </div>
+                </div>';
+        }
+        echo '<div class="col s2 m2"></div>';
+        echo '  </div>';
 
 
 
@@ -103,7 +134,7 @@
     ?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var photos = document.querySelectorAll('.photo');
+        var photos = document.querySelectorAll('.sc');
 
         photos.forEach(function(photo) {
             photo.addEventListener('click', function() {
@@ -124,7 +155,7 @@
     </script>
     <script>
         // Sélection aléatoire d'une division avec la classe "photo-pin"
-        var photoPins = document.getElementsByClassName("photo-pin");
+        var photoPins = document.getElementsByClassName("card");
         var randomIndex = Math.floor(Math.random() * photoPins.length);
         var randomPhotoPin = photoPins[randomIndex];
 

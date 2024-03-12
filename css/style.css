@@ -1,0 +1,19 @@
+.formstart{
+    border: 1px black solid;
+}
+img{
+    
+    max-width: 200px;
+}
+.row {
+    display: flex;
+  }
+  
+  .col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card {
+    flex: 1;
+  }
