@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 29 fév. 2024 à 05:10
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Hôte : localhost
+-- Généré le : lun. 11 mars 2024 à 18:21
+-- Version du serveur : 10.11.6-MariaDB-0+deb12u1
+-- Version de PHP : 8.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,14 +39,22 @@ CREATE TABLE `partie` (
 --
 
 INSERT INTO `partie` (`ID`, `idgame`, `nom`, `nomphoto`) VALUES
-(1, 2, 'silane', 'silane'),
-(2, 2, 'leonie', 'leonie (3)'),
-(3, 2, 'orane', 'orane'),
-(4, 2, 'louna', 'louna'),
-(5, 2, 'louis', 'louis'),
-(6, 2, 'charass', 'charass'),
-(7, 2, 'mateo', 'mateo'),
-(8, 2, 'adele', 'adele (3)');
+(1, 4, 'mateo', 'mateo'),
+(2, 4, 'adele', 'adele'),
+(3, 4, 'orane', 'orane'),
+(4, 4, 'yann', 'yann'),
+(5, 4, 'maiwenn', 'maiwenn (6)'),
+(6, 4, 'loic', 'loic (3)'),
+(7, 4, 'charass', 'charass (4)'),
+(8, 4, 'leonie', 'leonie (4)'),
+(9, 4, 'fabien', 'fabien (2)'),
+(10, 4, 'kiki', 'kiki'),
+(11, 4, 'marie', 'marie'),
+(12, 4, 'benji', 'benji'),
+(13, 4, 'valentin', 'valentin'),
+(14, 4, 'louis', 'louis (2)'),
+(15, 4, 'tmax', 'tmax (4)'),
+(16, 4, 'jg', 'jg');
 
 -- --------------------------------------------------------
 
@@ -148,7 +156,7 @@ ALTER TABLE `personne`
 -- AUTO_INCREMENT pour la table `partie`
 --
 ALTER TABLE `partie`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `personne`
