@@ -4,41 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QUI EST-CE ? L'ALCOLONIE</title>
-<link rel="stylesheet" href="stylephoto.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--import stylce.css -->
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
     <?php
-        include('header.php');
-        //connexion a la bdd
-        $servername = "localhost";
-        $db_username = "root";
-        $db_password = "1015";
-        $dbname = "test";
-        $conn = new mysqli($servername, $db_username, $db_password, $dbname);
+        
 
 
         //recuperation et verification de la seed
         if (isset($_POST['seed'])){
             $seed = $_POST['seed'];
-            
+            include('header.php');
+
+            //connexion a la bdd
+            $servername = "localhost";
+            $db_username = "root";
+            $db_password="1015";
+            $dbname = "test";
+            $conn = new mysqli($servername, $db_username, $db_password, $dbname);
+                
             // Affichage de la partie en fonction de la seed
-        
-            //recuperation des nom/nomphoto
-            $sql = "SELECT nom, nomphoto FROM partie WHERE idgame='".$seed."'";
-            $result = $conn->query($sql);
-            //affichage des photo
-            $i=0;
-            echo '<div class="photo-frame"><div class="row">';
-            foreach($result as $row){       
-                echo '<div class="photo-pin">'.$row['nom'].'<img class="photo" src="photo/'.$row['nomphoto'].'.jpg"></div>';
-                $i = $i+1;  
-                if ($i >= 8){
-                    echo '</div><div class="row">';
-                    $i=0;
-                }              
+            $sql = "SELECT nom, nomphoto FROM partie WHERE idgame=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $seed);
+            $stmt->execute();
+            
+
+            $stmt->bind_result($nom_result, $nomphoto_result);
+            $nom = array();
+            $nomphoto = array();
+            while ($stmt->fetch()) {
+                $nom[] = $nom_result;
+                $nomphoto[] = $nomphoto_result;
             }
-            echo '</div></div>';
+
+
+
+            // affichage
+            echo '  <div class="row flex">';
+            echo '<div class="col s2 m2"></div>';
+
+            for($a=0;$a<=7;$a++){
+                echo '<div class="col s1 m1">
+                    <div class="card" style=" display: flex; flex-direction: column; justify-content: center;">
+                        <div class="card-image" style="flex-grow: 1;"> 
+                            <img src="photo/'.$nomphoto[$a].'.jpg" class="responsive-img sc" style="max-height: 100%;"> 
+                        </div>
+                        <div class="card-content" style="text-align: center;">
+                            <span style="display: block;">'.$nom[$a].'</span> 
+                        </div>
+                    </div>
+                </div>';
+            }
+            echo '<div class="col s2 m2"></div>';
+
+            echo '  </div>';
+            echo '  <div class="row flex">';
+            echo '<div class="col s2 m2"></div>';
+            for($a=8;$a<=15;$a++){
+                echo '<div class="col s1 m1">
+                    <div class="card" style=" display: flex; flex-direction: column; justify-content: center;">
+                        <div class="card-image" style="flex-grow: 1;"> 
+                            <img src="photo/'.$nomphoto[$a].'.jpg" class="responsive-img sc" style="max-height: 100%;"> 
+                        </div>
+                        <div class="card-content" style="text-align: center;">
+                            <span style="display: block;">'.$nom[$a].'</span> 
+                        </div>
+                    </div>
+                </div>';
+            }
+            echo '<div class="col s2 m2"></div>';
+            echo '  </div>';
 
 
 
@@ -53,7 +97,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var photos = document.querySelectorAll('.photo');
+            var photos = document.querySelectorAll('.sc');
 
             photos.forEach(function(photo) {
                 photo.addEventListener('click', function() {
@@ -71,15 +115,15 @@
                 photo.setAttribute('data-original-src', photo.getAttribute('src'));
             });
         });
-        </script>
-        <script>
-            // Sélection aléatoire d'une division avec la classe "photo-pin"
-            var photoPins = document.getElementsByClassName("photo-pin");
-            var randomIndex = Math.floor(Math.random() * photoPins.length);
-            var randomPhotoPin = photoPins[randomIndex];
+    </script>
+    <script>
+        // Sélection aléatoire d'une division avec la classe "photo-pin"
+        var photoPins = document.getElementsByClassName("card");
+        var randomIndex = Math.floor(Math.random() * photoPins.length);
+        var randomPhotoPin = photoPins[randomIndex];
 
-            // Application de la bordure rose
-            randomPhotoPin.style.border = "5px solid pink";
-        </script>
+        // Application de la bordure rose
+        randomPhotoPin.style.border = "5px solid pink";
+    </script>
 </body>
 </html>
