@@ -17,39 +17,46 @@
     <?php 
         include('header.php'); 
     ?>
-        
+        <div class="container">
             <div class="row">
 
 
-
+                <div class="col s1"></div>
 
                 <div class="col s4 formstart">
-                    <form action="hostcopy.php">
-                        <h2>Créer une partie !</h2>
-                        <p>Host<br><p>
-                        <input type="submit" value="Créer">
+                    <form  action="hostcopy.php">
+                        <div class="cardd">
+                            <h2>Créer une partie !</h2>
+                            <p>Host<br><p>
+                            <input type="submit" value="Créer">
+                        </div>
                     </form>
-                   
+                
+                    
                 </div>
 
-
+                <div class="col s2"></div>
 
                 <div class="col s4 formstart">
                     <form action="join copy.php" method="POST">
-                        <h2>Rejoins une partie !</h2>
-                        <p> Join</p>
-                        <input type="number" name="seed" placeholder="Code partie" required="requis">
-                        <input type="submit" value="Rejoindre"">
+                        <div class="cardd">
+                            <h2>Rejoins une partie !</h2>
+                            <p> Join</p>
+                            <input type="number" name="seed" placeholder="Code partie" required="requis">
+                            <input type="submit" value="Rejoindre"">
+                        </div>
                     </form>
                 </div>
 
+                <div class="col s1"></div>
 
-
+                <!--
                 <div class="col s4 formstart">
                     <form action="insert.php" method="POST">
                         <h2>Ajoute une photo ! </h2>
                         <p>EN COURS DE DEVELOPPEMENT</p>
                         <?php
+                        /*
                             //connexion a la bdd
                             $servername = "localhost";
                             $db_username = "root";
@@ -66,22 +73,20 @@
                                 echo '<option value="'.$row['prenom'].'">'.$row['prenom'].'</option>';
                             }
                             echo '</select>';
+                        */
                         ?>
                         <input type="file" id="file" name="file">
                         <input type="submit" value="Ajouter">
                     </form>
                 </div>
-
-
-
+                -->
 
             </div>
-       
+        </div>
 
 
 
-
-            <?php include('footer.php'); ?>
+        <?php include('footer.php'); ?>
     <script src="script.js"></script>
 </body>
 

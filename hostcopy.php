@@ -176,7 +176,7 @@
             var randomPhotoPin = photoPins[randomIndex];
 
             // Application de la bordure rose
-            randomPhotoPin.style.border = "5px solid pink";
+            randomPhotoPin.style.border = "5px solid red";
         </script>
 
     </body>
