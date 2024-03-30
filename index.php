@@ -37,7 +37,7 @@
                 
 
                 <div class="col s4 formstart">
-                    <form action="join copy.php" method="POST">
+                    <form action="join_copy.php" method="POST">
                         <div class="cardd">
                             <h2>Rejoins une partie !</h2>
                             <p> Join</p>
