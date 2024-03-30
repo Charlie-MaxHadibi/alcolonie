@@ -34,7 +34,7 @@
             // Affichage de la partie en fonction de la seed
             $sql = "SELECT nom, nomphoto FROM partie WHERE idgame=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("?", $seed);
+            $stmt->bind_param("s", $seed);
             $stmt->execute();
             
 
