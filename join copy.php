@@ -25,10 +25,10 @@
             include('header.php');
 
             //connexion a la bdd
-            $servername = "localhost";
-            $db_username = "root";
-            $db_password="1015";
-            $dbname = "test";
+            $servername = "mysql";
+            $db_username = "otherUser";
+            $db_password="password";
+            $dbname = "dbtest";
             $conn = new mysqli($servername, $db_username, $db_password, $dbname);
                 
             // Affichage de la partie en fonction de la seed
